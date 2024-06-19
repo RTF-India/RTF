@@ -1,0 +1,94 @@
+div[id=floor]{
+width:100%;
+height:45px;
+background-color: white;
+left:0px; position: fixed; bottom:0px;
+}
+div[id=top]{
+width:100%; height:45px; background-color: #333;
+left:0px; position:fixed; top:0px;
+}
+i[id=vi]{
+font-size:50px; position:fixed; bottom:0px; left:1px;
+}
+i[id=si]{
+font-size:45px; bottom:0px; left:80px;position:fixed; color:black;
+}
+i[id=ci]{
+font-size:50px; bottom:0px; left:159px; position:fixed;
+}
+i[id=ai]{
+font-size:45px; bottom:0px; left:238px; position:fixed;
+}
+i[id=mi]{
+font-size:45px; bottom:0px; right:1px; position:fixed;
+}
+
+#myButton {
+            position: fixed;
+            background-color: transparent;
+            border: none;
+            padding: 10px 20px;
+            cursor: grab;
+            font-size:30px;
+            color:gold;
+        }
+        #searchbar{
+        margin-left; margin-right:0px;
+        padding:15px; color:red;
+        border-radius: 10px; position:fixed; background-color:transparent; border-color:black;
+        }
+        
+        input[type=text] {
+        width: 20%; right:20px; top:60px;
+        -webkit-transition: width 0.15s ease-in-out; font-color:red;
+        transition: width 0.15s ease-in-out;
+        }
+        
+        /* When the input field gets focus,
+        change its width to 100% */
+        input[type=text]:focus {
+        width: 70%; 
+        }
+        
+        #pit{
+        font-size:1em; postion:center; list-style-type:none; padding:0; margin:0;
+        
+        }
+        
+        .animals{
+        display: list-item;    
+        }  
+        img,iframe{ width:345px; height:300px; border-radius:20px; box-shadow:10px 10px 10px 10px gray;}
+        .dropbtn {
+        background-color: #333;
+        color: white; font-size:50px;
+        padding:  13px; top:0px; right:0px; position: fixed;
+        font-size: 16px;
+        border: none;
+        }
+        
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px; top:35px; position:fixed; right:0px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+      .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      }
+      .dropdown-content a:hover {background-color: #ddd;}
+      .dropdown:hover .dropdown-content {display: block;}
+      .dropdown:hover .dropbtn {background-color:rgba(46,251,256);}
+      button[id=RTF]{top:1px; width:80px; height:44px;background-color:rgba(46,251,256); border:none; color:white; font-size:30px; text-align: center; position:fixed; left:0px; }
+      button[id=mii]{ border-radius:50%; width:50px; height:50px; background:white; position:fixed; color:green; font-size:30px; right:140px;top:60px;}

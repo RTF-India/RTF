@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="theme-color" content="red">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+    <script>
+        window.onload = function () {
+            // Check if there are saved values
+            const savedName = localStorage.getItem('savedName');
+            const savedEmail = localStorage.getItem('savedEmail');
+            const savedPhone = localStorage.getItem('savedPhone');
+
+            // Populate the input fields if values are found
+            if (savedName) {
+                document.getElementById('nameInput').value = savedName;
+            }
+            if (savedEmail) {
+                document.getElementById('emailInput').value = savedEmail;
+            }
+            if (savedPhone) {
+                document.getElementById('phoneInput').value = savedPhone;
+            }
+        };
+
+        function saveUserInfo() {
+            // Get the entered values from the input fields
+            const enteredName = document.getElementById('nameInput').value;
+            const enteredEmail = document.getElementById('emailInput').value;
+            const enteredPhone = document.getElementById('phoneInput').value;
+
+            // Save the values to local storage
+            localStorage.setItem('savedName', enteredName);
+            localStorage.setItem('savedEmail', enteredEmail);
+            localStorage.setItem('savedPhone', enteredPhone);
+        }
+    </script>
+</head>
+<body style="background-color: lavender;"> <div>
+<img src="/storage/emulated/0/Pictures/Background Eraser/BackgroundEraser_20240323_203119500.png" alt="offline"width="100px" height="100px"> </img>
+<h1><p style="color:red"> RKTF</p> </h1> <h1><p style="color:green"> INDIA  </p> </h1>
+    <form onsubmit="saveUserInfo()" action="https://api.web3forms.com/submit" method="POST" autocomplete="true">
+    <input type="hidden" name="access_key" value="dbae3c07-828e-4139-b139-36503d392225">
+    
+        <label for="nameInput">Name:</label>
+        <input type="text" id="nameInput" name="name" required>
+
+        <label for="emailInput">Email:</label>
+        <input type="text" id="emailInput" name="email" required>
+
+        <label for="phoneInput">Phone Number:</label>
+        <input type="text" id="phoneInput" name="phone" required>
+        <label for="countryInput"> country: </label>
+
+       <button id="oo" type="submit">submit</button>
+    </form>
+   <a href="RTF.html"><button> Let's go </button></a>
+    <p id="rk" style="color:blue"> © powered by RFCTS™ </p>
+  <a  href="mailto:rk0035981@gmail.com" style="text-decoration:none;"> help </a>
+    </div>
+</body>
+<style type="text/css">
+input[type=text], select {
+  width: 90%;
+  padding: 12px 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+button[id=oo] {
+  width: 90%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: red; color: white;
+}
+button {
+  width: 90%;
+  background-color: aqua;
+  color: #333;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: red; color: white;
+}
+div{width:300px; height:600px;  box-shadow:10px 10px 10px gray;border-radius:20px;background-color:white; justify-content: center; text-align: center;}
+img{top:40px; position: absolute;  object-fit:cover; display: inline-block; left:30px; }
+body{justify-content:center; margin:30px;}
+a{color:gray;}
+</style>
+</html>

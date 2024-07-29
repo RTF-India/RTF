@@ -59,7 +59,7 @@ font-size:45px; bottom:0px; right:1px; position:fixed;
         .animals{
         display: list-item;    
         }  
-        img,iframe{ width:345px; height:300px; border-radius:20px; box-shadow:10px 10px 10px 10px gray;}
+        img,iframe,video{ width:345px; height:300px; border-radius:20px; box-shadow:10px 10px 10px 10px gray;}
         .dropbtn {
         background-color: #333;
         color: white; font-size:50px;
@@ -92,3 +92,6 @@ font-size:45px; bottom:0px; right:1px; position:fixed;
       .dropdown:hover .dropbtn {background-color:rgba(46,251,256);}
       button[id=RTF]{top:1px; width:80px; height:44px;background-color:rgba(46,251,256); border:none; color:white; font-size:30px; text-align: center; position:fixed; left:0px; }
       button[id=mii]{ border-radius:50%; width:50px; height:50px; background:white; position:fixed; color:green; font-size:30px; right:140px;top:60px;}
+      span[id=coinCount]{
+      position:fixed; top:20px; color:white; left:100px;
+      }

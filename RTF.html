@@ -45,30 +45,7 @@
         <!-- Add more videos as needed -->
         </div></li>
         </ol>
-    <div class="links-container">
-    <div class="link-item" id="linkContainer1" style="display: none;">
-    <a href="your_link1_here" data-cost="500" class="coinLink">Open Link 1 (Cost: 500 coins)</a>
-    </div>
-    <div class="link-item" id="linkContainer2" style="display: none;">
-    <a href="your_link2_here" data-cost="10" class="coinLink">Open Link 2 (Cost: 300 coins)</a>
-    </div>
-    <!-- Add more links as needed -->
-    <div class="link-item" id="linkContainer3" style="display: none;">
-    <a href="your_link3_here" data-cost="50000" class="coinLink">Open Link 2 (Cost: 50000 coins)</a>
-    </div>
-    <div class="link-item" id="linkContainer4" style="display: none;">
-    <a href="your_link4_here" data-cost="10000" class="coinLink">Open Link 2 (Cost: 10000 coins)</a>
-    </div>
-    <div class="link-item" id="linkContainer5" style="display: none;">
-    <a href="your_link2_here" data-cost="700" class="coinLink">Open Link 2 (Cost: 700 coins)</a>
-    </div>
-    <div class="link-item" id="linkContainer6" style="display: none;">
-    <a href="your_link2_here" data-cost="1500" class="coinLink">Open Link 2 (Cost: 1500 coins)</a>
-    </div>
-    <div class="link-item" id="linkContainer7" style="display: none;">
-    <a href="your_link2_here" data-cost="3000" class="coinLink">Open Link 2 (Cost: 3000 coins)</a>
-    </div>
-    </div>
+    
 <div id="top"></div>
 <button id="RTF"> RTF </button>
 <button id="mii"><i class="fa-solid fa-microphone" onclick="startRecognition()"> </i></button>
@@ -84,11 +61,39 @@
     <a href="#" onclick="server()"> Servers </a>
     <a href="#"> CMD </a>
     <a href="https://RTFCHAT.netlify.app/"> RTF CHAT </a>
+    <a href="#" id="btn" onclick="show()"> Downloads </a>
   </div>
 </div>
 <button id="myButton"><i class="fa-solid fa-crown" alt="vip"onclick="VIP()"></button></i>
 <div class="coin-container">
         <span id="coinCount">coins: 0</span>
+        </div>
+        <div id="bar" style="display:none;" > 
+        <p style="color:red;"> Downloads </p>
+        <div class="links-container">
+        <div class="link-item" id="linkContainer1" style="display: none;">
+        <a href="your_link1_here" data-cost="500" class="coinLink">TINY MOD 500 coins</a>
+        </div>
+        <div class="link-item" id="linkContainer2" style="display: none;">
+        <a href="your_link2_here" data-cost="10" class="coinLink">MORPH MOD 300 coins</a>
+        </div>
+        <!-- Add more links as needed -->
+        <div class="link-item" id="linkContainer3" style="display: none;">
+        <a href="your_link3_here" data-cost="50000" class="coinLink"> GUNS MOD 5000 coins</a>
+        </div>
+        <div class="link-item" id="linkContainer4" style="display: none;">
+        <a href="your_link4_here" data-cost="10000" class="coinLink">MC patch 2000 coins</a>
+        </div>
+        <div class="link-item" id="linkContainer5" style="display: none;">
+        <a href="your_link2_here" data-cost="700" class="coinLink">Open Link 2 (Cost: 700 coins)</a>
+        </div>
+        <div class="link-item" id="linkContainer6" style="display: none;">
+        <a href="your_link2_here" data-cost="1500" class="coinLink">Open Link 2 (Cost: 1500 coins)</a>
+        </div>
+        <div class="link-item" id="linkContainer7" style="display: none;">
+        <a href="your_link2_here" data-cost="3000" class="coinLink">Open Link 2 (Cost: 3000 coins)</a>
+        </div>
+        </div>
         </div>
 </body>
 <script type="text/javascript">    
@@ -246,5 +251,17 @@
         });
         });
         //end
+        function show(){
+        document.getElementById('bar').style.display = "block";
+        }
+        
+        document.addEventListener('click', function(event) {
+        var bar = document.getElementById('bar');
+        var button = document.getElementById('btn');
+        
+        if (bar.style.display === "block" && !bar.contains(event.target) && event.target !== button) {
+        bar.style.display = "none";
+        }
+        });
 </script>
 </html>

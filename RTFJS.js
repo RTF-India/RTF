@@ -39,7 +39,7 @@
         document.write("<center><h2><p style='color:red'>click the upload button and mail the img/video link</p></h2><a href='mailto:rtf522279@gmail.com'><button> UPLOAD </button></a> <style> button{ text-decoration:none; width:80%; height:50px; text-align: center; background-color:rgba(46,251,252,0.2);}</style>");
         }
         function feedback(){
-        document.write("<center> <form action='https://api.web3forms.com/submit' method='POST'><input type='hidden' name='access_key' value='dbae3c07-828e-4139-b139-36503d392225'><label for='email' style='color:white;'>Email </label><input type='text' name='email' placeholder='enter email...' required> </input> <label for='message' style='color:white; '> message </label><textarea name='massage' placeholder='enter message...' required> </textarea> <button>SEND</button></form><style> button{width:100%; height:45px; background: linear-gradient(90deg,red,blue); font-size:30px; color:white;}input{width:100%; height:45px; font-size:35px; color:white; } textarea{width:100%; color:white; font-size:35px; height:400px;} body{background-color:black;} </style>");
+        document.write("<center> <form action='https://api.web3forms.com/submit' method='POST'><input type='hidden' name='access_key' value='dbae3c07-828e-4139-b139-36503d392225'><label for='email' style='color:white;'>Email </label><input type='text' name='email' placeholder='enter email...' required> </input> <label for='message' style='color:white;'> message </label><textarea name='massage' required> </textarea> <button>SEND</button></form><style> button{width:100%; height:45px; background: linear-gradient(90deg,red,blue); font-size:30px; color:white;}input{width:100%; height:45px; font-size:35px; color:white; } textarea{width:100%; color:white; font-size:35px; height:400px;} body{background-color:black;} </style>");
         }
         // Check if the browser supports the Web Speech API
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -93,3 +93,9 @@
         }
         function VIP(){ document.write("<center> <p style='color:green'>WELCOME </p<");
         }
+        function server(){
+        document.write("<center><h1> <p style='color:red'>Servers</p></h1><h2><p style='color:skyblue'> Aternos</p></h2><a href='www.aternos.com'>GO</a> ");
+        }
+        
+        
+        

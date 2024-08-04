@@ -96,6 +96,16 @@
         function server(){
         document.write("<center><h1> <p style='color:red'>Servers</p></h1><h2><p style='color:skyblue'> Aternos</p></h2><a href='www.aternos.com'>GO</a> ");
         }
+        function tournament(){
+        document.getElementById('tour').style.display = "block";
+        }
+        document.addEventListener('click', function(event) {
+        var tour = document.getElementById('tour');
+        var button = document.getElementById('btnn');
         
+        if (bar.style.display === "block" && !bar.contains(event.target) && event.target !== button) {
+        bar.style.display = "none";
+        }
+        });
         
         

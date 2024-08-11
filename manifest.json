@@ -1,0 +1,20 @@
+{
+  "name": "RTF",
+  "short_name": "RTF",
+  "start_url": "RTF.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "red",
+  "icons": [
+    {
+      "src": "icons/rfc.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/rfc.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

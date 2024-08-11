@@ -107,5 +107,8 @@
         bar.style.display = "none";
         }
         });
+        function hide(){
+        document.getElementById('tour').style.display="none";
+        }
         
         

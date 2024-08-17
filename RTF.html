@@ -61,6 +61,7 @@
     <a href="https://youtube.com/@rfctsgamer3074?si=aCE2O901yWbTTONy">RFCTS GAMER </a>
     <a href="#" onclick="server()"> Servers </a>
     <a href="#"> CMD </a>
+    <a href="addcoins.html"> top up </a>
     <a href="https://RTFCHAT.netlify.app/"> RTF CHAT </a>
     <a id="btn" onclick="show()"> Downloads </a>
     <a id="btnn" onclick="tournament()"> TOURNAMENT </a>
@@ -72,36 +73,44 @@
         </div>
         <div id="bar" style="display:none;" > 
         <p style="color:red;"> Downloads </p>
-        <div class="links-container">
-        <div class="link-item" id="linkContainer1" style="display: none;">
-        <a href="your_link1_here" data-cost="500" class="coinLink">TINY MOD 500 coins</a>
+        <div class="search-container">
+        <i class="search-icon">
+        <img src="icon.jpg" alt="">
+        </i>
+        <input type="text" id="searchBar" class="search-bar" placeholder="Search...">
         </div>
-        <div class="link-item" id="linkContainer2" style="display: none;">
+        <div id="listContainer" class="list-container">
+        <div class="list-item"><div class="link-item" id="linkContainer1" style="display: none;">
+        <a href="your_link1_here" data-cost="500" class="coinLink" >TINY MOD 500 coins</a>
+        </div></div>
+        <div class="list-item"><div class="link-item" id="linkContainer2" style="display: none;">
         <a href="your_link2_here" data-cost="10" class="coinLink">MORPH MOD 300 coins</a>
-        </div>
-        <!-- Add more links as needed -->
-        <div class="link-item" id="linkContainer3" style="display: none;">
+        </div></div>
+        <div class="list-item"><div class="link-item" id="linkContainer3" style="display: none;">
         <a href="your_link3_here" data-cost="50000" class="coinLink"> GUNS MOD 5000 coins</a>
-        </div>
-        <div class="link-item" id="linkContainer4" style="display: none;">
+        </div></div>
+        <div class="list-item"><div class="link-item" id="linkContainer4" style="display: none;">
         <a href="your_link4_here" data-cost="10000" class="coinLink">MC patch 2000 coins</a>
-        </div>
-        <div class="link-item" id="linkContainer5" style="display: none;">
+        </div></div>
+        <div class="list-item"><div class="link-item" id="linkContainer5" style="display: none;">
         <a href="your_link2_here" data-cost="700" class="coinLink">Open Link 2 (Cost: 700 coins)</a>
-        </div>
-        <div class="link-item" id="linkContainer6" style="display: none;">
+        </div></div>
+        <div class="list-item"><div class="link-item" id="linkContainer6" style="display: none;">
         <a href="your_link2_here" data-cost="1500" class="coinLink">Open Link 2 (Cost: 1500 coins)</a>
-        </div>
-        <div class="link-item" id="linkContainer7" style="display: none;">
+        </div></div>
+        <div class="list-item"><div class="link-item" id="linkContainer7" style="display: none;">
         <a href="your_link2_here" data-cost="3000" class="coinLink">Open Link 2 (Cost: 3000 coins)</a>
+        </div></div>
         </div>
+       <div class="links-container">
+        <!-- Add more links as needed -->
         </div>
         </div>
         <div id="tour" style="display:none;">
        <p class="tou" > RTF TOURNAMENT</p>
        <div id="ss"> 
-      <img id="scroll" src="https://1024terabox.com/s/1BC44IfVGhJfIEnzDA4Y_XQ">  </img>
-      <img id="scroll" src="/storage/emulated/0/Pictures/Screenshots/Screenshot_20240802-210237.jpg"> </img>
+      <img id="scroll" src="mc.jpg">  </img>
+      <img id="scroll" src="ff.jpg"> </img>
       <img id="scroll" src="https://drive.google.com/uc?export=views&id=1RPjXjkysCCCD-0bwDn2RyYbBPgX9Xh0t"> </img>
       
        </div>
@@ -273,6 +282,21 @@
         
         if (bar.style.display === "block" && !bar.contains(event.target) && event.target !== button) {
         bar.style.display = "none";
+        }
+        });
+        const searchBar = document.getElementById('searchBar');
+        const listContainer = document.getElementById('listContainer');
+        const listItems = listContainer.getElementsByClassName('list-item');
+        
+        searchBar.addEventListener('input', function() {
+        const searchTerm = searchBar.value.toLowerCase();
+        for (const item of listItems) {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+        item.style.display = '';
+        } else {
+        item.style.display = 'none';
+        }
         }
         });
 </script>

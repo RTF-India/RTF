@@ -7,35 +7,43 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button id="addCoinsButton" onclick="hide()">Add 200 Coins</button>
+    <button id="addCoinsButton" onclick="hideAndAddCoins()">Add 200 Coins</button>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
-    const addCoinsButton = document.getElementById("addCoinsButton");
-    let coins = 0;
-    
-    const loadCoinsFromStorage = () => {
-    const savedCoins = localStorage.getItem("coins");
-    if (savedCoins) {
-    coins = parseInt(savedCoins, 10);
-    }
-    };
-    
-    const saveCoinsToStorage = () => {
-    localStorage.setItem("coins", coins);
-    window.dispatchEvent(new Event('storage')); // Trigger storage event
-    };
-    
-    loadCoinsFromStorage();
-    
-    addCoinsButton.addEventListener("click", function () {
-    coins += 20000;
-    saveCoinsToStorage();
-    alert(`200 coins added. Total coins: ${coins}`);
+        const addCoinsButton = document.getElementById("addCoinsButton");
+        let coins = 0;
+
+        const loadCoinsFromStorage = () => {
+            const savedCoins = localStorage.getItem("coins");
+            if (savedCoins) {
+                coins = parseInt(savedCoins, 10);
+            }
+        };
+
+        const saveCoinsToStorage = () => {
+            localStorage.setItem("coins", coins);
+            window.dispatchEvent(new Event('storage')); // Trigger storage event
+        };
+
+        // Check if the button was already clicked
+        const buttonClicked = localStorage.getItem("buttonClicked");
+        if (buttonClicked === "true") {
+            addCoinsButton.style.display = "none"; // Hide button if already clicked
+        }
+
+        loadCoinsFromStorage();
+
+        addCoinsButton.addEventListener("click", function () {
+            coins += 20000;
+            saveCoinsToStorage();
+            alert(`200 coins added. Total coins: ${coins}`);
+        });
     });
-    });
-    function hide(){
-    document.getElementById('addCoinsButton').style.display="none";
-    alert('succesfully added');
+
+    function hideAndAddCoins() {
+        document.getElementById('addCoinsButton').style.display = "none";
+        localStorage.setItem("buttonClicked", "true"); // Save the button click state
+        alert('Successfully added 200 coins');
     }
     </script>
 </body>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Snake Game</h1>
+    <div id="game-container">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div id="controls">
+            <button id="up">Up</button>
+            <button id="left">Left</button>
+            <button id="right">Right</button>
+            <button id="down">Down</button>
+        </div>
+        <div id="score">Score: 0</div>
+        <button id="replay" style="display:none;">Replay</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+<style type="text/css">
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+#game-container {
+    text-align: center;
+}
+#gameCanvas {
+    border: 1px solid #000;
+    background-color: #fff;
+}
+#controls {
+    margin-top: 10px;
+}
+button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+#score {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+</style>
+<script type="text/javascript">
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const scoreDisplay = document.getElementById('score');
+const replayButton = document.getElementById('replay');
+const controls = {
+    up: document.getElementById('up'),
+    left: document.getElementById('left'),
+    right: document.getElementById('right'),
+    down: document.getElementById('down')
+};
+
+const gridSize = 20;
+let snake = [{ x: 200, y: 200 }];
+let direction = { x: 0, y: 0 };
+let food = { x: 0, y: 0 };
+let score = 0;
+
+function placeFood() {
+    food.x = Math.floor(Math.random() * (canvas.width / gridSize)) * gridSize;
+    food.y = Math.floor(Math.random() * (canvas.height / gridSize)) * gridSize;
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'red';
+    ctx.fillRect(food.x, food.y, gridSize, gridSize);
+
+    ctx.fillStyle = 'green';
+    snake.forEach(segment => ctx.fillRect(segment.x, segment.y, gridSize, gridSize));
+}
+
+function update() {
+    const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
+
+    if (head.x === food.x && head.y === food.y) {
+        score++;
+        scoreDisplay.textContent = `Score: ${score}`;
+        placeFood();
+    } else {
+        snake.pop();
+    }
+
+    if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height || snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+        replayButton.style.display = 'block';
+        return;
+    }
+
+    snake.unshift(head);
+    draw();
+}
+
+function changeDirection(newDirection) {
+    direction = newDirection;
+}
+
+controls.up.addEventListener('click', () => changeDirection({ x: 0, y: -gridSize }));
+controls.left.addEventListener('click', () => changeDirection({ x: -gridSize, y: 0 }));
+controls.right.addEventListener('click', () => changeDirection({ x: gridSize, y: 0 }));
+controls.down.addEventListener('click', () => changeDirection({ x: 0, y: gridSize }));
+
+replayButton.addEventListener('click', () => {
+    snake = [{ x: 200, y: 200 }];
+    direction = { x: 0, y: 0 };
+    score = 0;
+    scoreDisplay.textContent = `Score: ${score}`;
+    replayButton.style.display = 'none';
+    placeFood();
+    draw();
+});
+
+placeFood();
+setInterval(update, 100);
+
+</script>
+</html>

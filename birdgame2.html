@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div id="player-bird" class="bird"></div>
+        <div id="score">Score: 0</div>
+        <div id="start" class="start-replay">Start Game</div>
+        <div id="replay" class="start-replay hidden">Replay</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+<style type="text/css">
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #87CEEB; /* Sky blue background */
+    border: 2px solid #000;
+    overflow: hidden;
+}
+
+#player-bird {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: transparent; /* Fallback color */
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    background-image: url('playerbird.png'); /* Update with your player's image path */
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.bird {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: transparent; /* Fallback color */
+    background-image: url('enemybird.png'); /* Update with your enemy's image path */
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.start-replay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+</style>
+<script type="text/javascript">
+const playerBird = document.getElementById('player-bird');
+const scoreElement = document.getElementById('score');
+const startButton = document.getElementById('start');
+const replayButton = document.getElementById('replay');
+
+let score = 0;
+let isGameOver = false;
+let enemyBirds = [];
+let enemySpeed = 3; // Initial speed
+let spawnDelay = 1500; // Initial spawn delay
+
+// Function to move the player bird
+function moveBird(event) {
+    if (isGameOver) return;
+
+    const gameContainer = document.querySelector('.game-container');
+    const containerWidth = gameContainer.offsetWidth;
+    const birdWidth = playerBird.offsetWidth;
+
+    let newX;
+
+    if (event.touches) {
+        newX = event.touches[0].clientX - gameContainer.offsetLeft - (birdWidth / 2);
+    } else {
+        newX = event.clientX - gameContainer.offsetLeft - (birdWidth / 2);
+    }
+
+    // Allow the bird to reach the edges
+    if (newX < 0) newX = 0;
+    if (newX > containerWidth - birdWidth) newX = containerWidth - birdWidth;
+
+    playerBird.style.left = `${newX}px`;
+}
+
+// Function to create and spawn enemy birds
+function spawnEnemyBirds() {
+    if (isGameOver) return;
+
+    createEnemyBird();
+
+    // Spawn next bird after a dynamic delay based on the score
+    setTimeout(spawnEnemyBirds, spawnDelay);
+}
+
+// Function to create an enemy bird
+function createEnemyBird() {
+    const gameContainer = document.querySelector('.game-container');
+    const enemyBird = document.createElement('div');
+    enemyBird.classList.add('bird');
+    gameContainer.appendChild(enemyBird);
+    resetEnemyBird(enemyBird);
+}
+
+// Function to reset the enemy bird's position randomly along the top
+function resetEnemyBird(enemyBird) {
+    const gameContainer = document.querySelector('.game-container');
+    const containerWidth = gameContainer.offsetWidth;
+
+    // Randomly position the bird along the top edge
+    let randomX = Math.floor(Math.random() * (containerWidth - enemyBird.offsetWidth));
+    enemyBird.style.left = `${randomX}px`;
+    enemyBird.style.top = `-50px`;
+
+    moveEnemyBird(enemyBird);
+}
+
+// Function to move the enemy bird
+function moveEnemyBird(enemyBird) {
+    let enemyMovement = setInterval(() => {
+        if (isGameOver) clearInterval(enemyMovement);
+
+        let enemyTop = parseInt(enemyBird.style.top);
+        enemyBird.style.top = `${enemyTop + enemySpeed}px`;
+
+        // Check collision
+        if (isCollision(playerBird, enemyBird)) {
+            gameOver();
+            clearInterval(enemyMovement);
+        }
+
+        // Reset the enemy bird position if it goes out of the game area
+        if (enemyTop > document.querySelector('.game-container').offsetHeight) {
+            clearInterval(enemyMovement);
+            enemyBird.remove();
+            score++;
+            scoreElement.textContent = `Score: ${score}`;
+            adjustDifficulty();
+        }
+    }, 20);
+}
+
+// Collision detection
+function isCollision(bird1, bird2) {
+    const rect1 = bird1.getBoundingClientRect();
+    const rect2 = bird2.getBoundingClientRect();
+
+    return !(
+        rect1.top > rect2.bottom ||
+        rect1.bottom < rect2.top ||
+        rect1.left > rect2.right ||
+        rect1.right < rect2.left
+    );
+}
+
+// Game Over
+function gameOver() {
+    isGameOver = true;
+    replayButton.classList.remove('hidden');
+    startButton.classList.add('hidden');
+}
+
+// Adjust difficulty as score increases
+function adjustDifficulty() {
+    if (score > 10 && score <= 20) {
+        enemySpeed = 4;
+        spawnDelay = 1200; // Decrease spawn delay
+    } else if (score > 20 && score <= 60) {
+        enemySpeed = 5;
+        spawnDelay = 900;  // Further decrease spawn delay
+    } else if (score > 60) {
+        enemySpeed = 7;
+        spawnDelay = 700;  // Minimum spawn delay
+    }
+}
+
+// Start Game
+function startGame() {
+    isGameOver = false;
+    score = 0;
+    enemySpeed = 3; // Reset speed to the initial value
+    spawnDelay = 1500; // Reset spawn delay to the initial value
+    enemyBirds = [];
+    scoreElement.textContent = `Score: ${score}`;
+    document.querySelectorAll('.bird:not(#player-bird)').forEach(bird => bird.remove());
+    replayButton.classList.add('hidden');
+    startButton.classList.add('hidden');
+
+    // Start spawning enemy birds
+    spawnEnemyBirds();
+}
+
+startButton.addEventListener('click', startGame);
+replayButton.addEventListener('click', startGame);
+
+// Move the bird with mouse or touch
+const gameContainer = document.querySelector('.game-container');
+gameContainer.addEventListener('mousemove', moveBird);
+gameContainer.addEventListener('touchmove', moveBird);
+
+</script>
+</html>

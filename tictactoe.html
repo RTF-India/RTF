@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Tic Tac Toe</h1>
+        <div class="game-board">
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+        </div>
+        <div class="game-status">
+            <h2 class="status-message"></h2>
+            <button id="restartButton">Restart Game</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+<style type="text/css">
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+}
+
+.game-container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+    margin: 20px auto;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cell:hover {
+    background-color: #f9f9f9;
+}
+
+.status-message {
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+
+#restartButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+#restartButton:hover {
+    background-color: #555;
+}
+
+</style>
+<script type="text/javascript">
+const cells = document.querySelectorAll('[data-cell]');
+const statusMessage = document.querySelector('.status-message');
+const restartButton = document.getElementById('restartButton');
+let isXTurn = true;
+let gameActive = true;
+const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
+const handleCellClick = (e) => {
+    const cell = e.target;
+    const currentClass = isXTurn ? 'X' : 'O';
+    if (cell.textContent === '' && gameActive) {
+        cell.textContent = currentClass;
+        if (checkWin(currentClass)) {
+            statusMessage.textContent = `${currentClass} wins!`;
+            gameActive = false;
+        } else if (isDraw()) {
+            statusMessage.textContent = 'Draw!';
+            gameActive = false;
+        } else {
+            isXTurn = !isXTurn;
+            statusMessage.textContent = `${isXTurn ? 'X' : 'O'}'s turn`;
+        }
+    }
+};
+
+const checkWin = (currentClass) => {
+    return winningCombinations.some(combination => {
+        return combination.every(index => {
+            return cells[index].textContent === currentClass;
+        });
+    });
+};
+
+const isDraw = () => {
+    return [...cells].every(cell => {
+        return cell.textContent === 'X' || cell.textContent === 'O';
+    });
+};
+
+const restartGame = () => {
+    isXTurn = true;
+    gameActive = true;
+    statusMessage.textContent = "X's turn";
+    cells.forEach(cell => {
+        cell.textContent = '';
+    });
+};
+
+cells.forEach(cell => {
+    cell.addEventListener('click', handleCellClick);
+});
+
+restartButton.addEventListener('click', restartGame);
+
+</script>
+</html>

@@ -78,7 +78,7 @@
     <a href="#">Videos</a>
     <a href="https://youtube.com/@rfctsgamer3074?si=aCE2O901yWbTTONy">RFCTS GAMER </a>
     <a href="#" onclick="server()"> Servers </a>
-    <a href="#"> CMD </a>
+    <a id="gaming"  onclick="games()" > RTF GAMES </button>
     <a href="addcoins.html"> top up </a>
     <a href="https://RTFCHAT.netlify.app/"> RTF CHAT </a>
     <a id="btn" onclick="show()"> Downloads </a>
@@ -133,6 +133,15 @@
       
        </div>
        <button onclick="hide()"> hide </button>
+        </div>
+        <div id="gamescript" style="display:none;"> 
+        <h2><p style="color:red;"> welcome to gaming world </p></h2>
+       <a href="birdgame2.html"><img src="birdga.jpg"> </img></a>
+        <p style="color:skyblue;"> Bird Game </p>
+        <a href="tictactoe.html"><img src="tictac.jpg"> </img></a>
+        <p style="color:skyblue;"> Tic Tac Toe </p>
+        <a href="snakegame.html"><img src="snakega.jpg"> </img></a>
+        <p style="color:skyblue;"> Snake game </p>
         </div>
 </body>
 <script type="text/javascript">    
@@ -317,5 +326,8 @@
         }
         }
         });
+        function games(){
+        document.getElementById('gamescript').style.display="block";
+        }
 </script>
 </html>

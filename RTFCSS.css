@@ -180,8 +180,13 @@ font-size:45px; bottom:0px; right:1px; position:fixed;
      div[id=gamescript]{
      width:100%;
      height:100%;
-     background-color:white;
+     background-image:url('gojo.jpeg'); background-attachment:fixed; background-size:100% 100%;
      left:0px; right:0px; justify-content: center;
      bottom:0px; position:fixed;
      overflow-y:auto; text-align: center;
+     animation:1s growned linear;
+     }
+     @keyframes growned{
+     0%{height:1px; top:1px; } 
+     100%{height:100%; top:1px;}
      }

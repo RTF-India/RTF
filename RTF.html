@@ -13,14 +13,17 @@
 <script src="db.js"></script>
 <input id="searchbar" onkeyup="search_animal()" type="text"
        name="search" placeholder="Search...">
-       <!-- Google tag (gtag.js) -->
-       <script async src="https://www.googletagmanager.com/gtag/js?id=G-0S99F66T2E"></script>
        <script>
-       window.dataLayer = window.dataLayer || [];
-       function gtag(){dataLayer.push(arguments);}
-       gtag('js', new Date());
-       
-       gtag('config', 'G-0S99F66T2E');
+       if ('serviceWorker' in navigator) {
+       window.addEventListener('load', () => {
+       navigator.serviceWorker.register('/service-worker.js')
+       .then(registration => {
+       console.log('ServiceWorker registration successful with scope: ', registration.scope);
+       }, err => {
+       console.log('ServiceWorker registration failed: ', err);
+       });
+       });
+       }
        </script>
 </head>
 <body>
@@ -181,6 +184,7 @@
       
        </div>
        <button onclick="hide()"> hide </button>
+       <h1><br><span style="color:red;"> No</span><span style="color:blue;">Tournament</span><span style="color:green;">Available</span></br></h1>
         </div>
         <div id="gamescript" style="display:none;"> 
         <h2><p style="color:red;"> welcome to gaming world </p></h2>

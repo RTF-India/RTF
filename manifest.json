@@ -1,7 +1,7 @@
 {
   "name": "RTF",
   "short_name": "RTF",
-  "start_url": "RTF.html",
+  "start_url": "rtf.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "red",
